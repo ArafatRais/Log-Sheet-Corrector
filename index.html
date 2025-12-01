@@ -67,7 +67,10 @@
     </div>
 
     <script>
-        const API_KEY = ""; // Leave this as-is
+        // CRITICAL: When hosting this file yourself (e.g., on GitHub Pages), 
+        // you MUST replace the empty string below with your actual Gemini API Key.
+        // Get your key from Google AI Studio.
+        const API_KEY = "AIzaSyCOrPoBuQDMaO0ReY0vR9Ax8PLnJs90lWc"; 
         const MODEL_NAME = "gemini-2.5-flash-preview-09-2025";
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
 
@@ -101,6 +104,12 @@
         }
 
         async function correctEntry() {
+            // Check if API key is provided for external hosting
+            if (API_KEY === "") {
+                outputEl.value = "Error: API Key is missing. Please edit the HTML file and insert your personal Gemini API Key in the 'API_KEY' variable to use this app outside of the Canvas environment.";
+                return;
+            }
+
             const originalEntry = inputEl.value.trim();
 
             if (!originalEntry) {
